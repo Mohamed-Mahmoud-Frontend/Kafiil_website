@@ -7,6 +7,30 @@ document.getElementById('clickedImg').addEventListener('click', function () {
     }
   });
 
+  var currentIndex = 0;
+  var totalItems = document.querySelectorAll('.carousel-item').length;
+  var carouselWrapper = document.getElementById('carousel');
+
+  function showSlide(index) {
+    if (index < 0) {
+      currentIndex = totalItems - 1;
+    } else if (index >= totalItems) {
+      currentIndex = 0;
+    } else {
+      currentIndex = index;
+    }
+
+    var translateValue = -currentIndex * 100 + '%';
+    carouselWrapper.style.transform = 'translateX(' + translateValue + ')';
+  }
+
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
   // Close the menu if clicked outside of it
   window.addEventListener('click', function(event) {
     var menu = document.getElementById('menu');
